@@ -1,0 +1,47 @@
+<mat-form-field appearance="outline" >
+  <mat-label>Filtrer</mat-label>
+  <input (keyup)="apply_filter($event)" matInput placeholder="Filtrer">
+</mat-form-field>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="id_voiture">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID Voiture </th>
+      <td mat-cell *matCellDef="let element"> {{element.id_voiture}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="id_client">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID Client </th>
+      <td mat-cell *matCellDef="let element"> {{element.id_client}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="date_location">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Date de location </th>
+      <td mat-cell *matCellDef="let element"> {{element.date_location | date}} </td>
+    </ng-container>
+
+    <!-- Action Column -->
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Action </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-raised-button color="accent" (click)="deleteRent(element)" >Rendre la Voiture</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20, 25]" showFirstLastButtons aria-label="Select page">
+
+  </mat-paginator>
+</div>
+
+
+
